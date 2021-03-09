@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from random import sample
 from datetime import datetime, timedelta
 
-st.title('Video Streaming Social Media Analyticss')
+st.title('Video Streaming Social Media Analytics')
 st.subheader("A social media computing project by Wan Zulmuhammad Harith, Amirah Anis Adlin, Nurlaili Hamimi and Amirul Ikhmal")
 
 st.markdown("""## Followers Twitter Age Group""")
@@ -24,12 +24,14 @@ df_age['age'] = int(this_year) - df_age['year']
 
 total_count = pd.DataFrame(df_age.age.value_counts().reset_index().values, columns=["age", "aggregate age"])
 a = total_count.sort_values('age')
+a = a.drop(a.loc[a['age'] == 51].index)
+a = a.reset_index(drop=True)
 # a
 
 age = a['age']
 count = a['aggregate age']
 
-fig, ax = plt.subplots(figsize =(16, 9)) 
+fig, ax = plt.subplots(figsize=(16, 12)) 
 
 # Horizontal Bar Plot 
 ax.barh(age, count) 
@@ -84,6 +86,8 @@ df_age['age'] = int(this_year) - df_age['year']
 
 total_count = pd.DataFrame(df_age.age.value_counts().reset_index().values, columns=["age", "aggregate age"])
 a = total_count.sort_values('age')
+a = a.drop(a.loc[a['age'] == 0].index)
+a = a.reset_index(drop=True)
 # a
 
 age = a['age']
