@@ -8,12 +8,37 @@ from random import sample
 from datetime import datetime, timedelta
 
 def app():
-	st.title('Video Streaming Social Media Analyticss')
+	@st.cache(allow_output_mutation=True)
+	def get_followers():
+		df = pd.read_csv('Datasets/disneyplus_followers.csv')
+		return df
+
+	@st.cache(allow_output_mutation=True)
+	def get_friends():
+		df = pd.read_csv('Datasets/disneyplus_friends.csv')
+		return df
+
+	@st.cache(allow_output_mutation=True)
+	def get_mentions():
+		df = pd.read_csv('Datasets/disneyplus_mentions.csv')
+		return df
+
+	@st.cache(allow_output_mutation=True)
+	def get_count():
+		df = pd.read_csv('Datasets/disneyplus_followers_count.csv')
+		return df
+
+	@st.cache(allow_output_mutation=True)
+	def get_tweets():
+		df = pd.read_csv('Datasets/disneyplus_tweets.csv')
+		return df
+
+	st.title('Video Streaming Social Media Analytics')
 	st.subheader("A social media computing project by Wan Zulmuhammad Harith, Amirah Anis Adlin, Nurlaili Hamimi and Amirul Ikhmal")
 
 	st.markdown("""## Followers Twitter Age Group""")
 
-	df = pd.read_csv('Datasets/disneyplus_followers.csv')
+	df = get_followers()
 	df['created_at'] = pd.to_datetime(df['created_at'])
 	df['year'] = df['created_at'].dt.strftime('%Y')
 	df_age = df[['screen_name', 'year']]
@@ -73,7 +98,7 @@ def app():
 
 	st.markdown("""## Friends Twitter Age Group""")
 
-	df = pd.read_csv('Datasets/disneyplus_friends.csv')
+	df = get_friends()
 	df['created_at'] = pd.to_datetime(df['created_at'])
 	df['year'] = df['created_at'].dt.strftime('%Y')
 	df_age = df[['screen_name', 'year']]
@@ -133,13 +158,12 @@ def app():
 
 	st.markdown("""## Followers Growth""")
 
-	followers = pd.read_csv("Datasets/disneyplus_followers_count.csv")
+	followers = get_count()
 
 	plt.figure(figsize=(20, 10))
 	plt.plot(followers['Date Collected'], followers['Count'])
 	plt.xlabel('Date')
 	plt.ylabel('Count')
-	plt.show()
 	st.pyplot(plt)
 
 	avg_fll_per_day = followers['Count'].sum()/14
@@ -151,7 +175,6 @@ def app():
 
 	while i < 13:
 		fll_per_day = followers['Count'][i+1] - followers['Count'][i]
-		print(fll_per_day)
 		i+=1
 		
 		total_fll_per_day = total_fll_per_day + fll_per_day
@@ -163,7 +186,7 @@ def app():
 	# ---------------end of followers growth --------------------
 
 	st.markdown("""## Average Mentions per Day""")
-	df = pd.read_csv('Datasets/disneyplus_mentions.csv')
+	df = get_mentions()
 
 	df['created_at'] = pd.to_datetime(df['created_at'])
 	df['date'] = [d.date() for d in df['created_at']]
@@ -180,7 +203,7 @@ def app():
 
 	st.markdown("""## Peak Time of Mentions Per Day""")
 
-	mentions = pd.read_csv('Datasets/disneyplus_mentions.csv')
+	mentions = get_mentions()
 	mentions['created_at'] = pd.to_datetime(mentions['created_at'])
 
 	bins = [0, 6, 12, 16, 20, 24]
@@ -198,7 +221,7 @@ def app():
 
 	st.markdown("""## Peak Time of Tweets Per Day""")
 
-	tweets = pd.read_csv('Datasets/disneyplus_tweets.csv')
+	tweets = get_tweets()
 	tweets['created_at'] = pd.to_datetime(tweets['created_at'])
 
 	bins = [0, 6, 12, 16, 20, 24]

@@ -1,9 +1,8 @@
 streamlit
-sklearn
-seaborn
 pandas
 numpy
-imblearn
 matplotlib
-boruta
-apyori
+json
+csv
+datetime
+random
