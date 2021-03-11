@@ -50,7 +50,8 @@ def app():
 
 	total_count = pd.DataFrame(df_age.age.value_counts().reset_index().values, columns=["age", "aggregate age"])
 	a = total_count.sort_values('age')
-	# a
+	a = a.drop(a.loc[a['age'] >= 15].index)
+	a = a.reset_index(drop=True)
 
 	age = a['age']
 	count = a['aggregate age']
