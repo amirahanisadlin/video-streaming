@@ -5,6 +5,9 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from random import sample
+import networkx as nx
+from operator import itemgetter
+import community
 from datetime import datetime, timedelta
 
 def app():
@@ -31,6 +34,16 @@ def app():
 	@st.cache(allow_output_mutation=True)
 	def get_tweets():
 		df = pd.read_csv('Datasets/iqiyi_tweets.csv')
+		return df
+
+	@st.cache(allow_output_mutation=True)
+	def get_nodelist():
+		df = pd.read_csv('Datasets/iqiyi_nodelist.csv')
+		return df
+
+	@st.cache(allow_output_mutation=True)
+	def get_edgelist():
+		df = pd.read_csv('Datasets/iqiyi_edgelist.csv')
 		return df
 
 	st.title('Video Streaming Social Media Analytics')
@@ -259,4 +272,36 @@ def app():
 	hashtags = hashtag.value_counts()
 	hashtags[:10].plot(kind="bar")
 	plt.title("Top Hashtags")
+	st.pyplot(plt)
+
+	# ---------------end of hashtaglist --------------------
+
+	st.markdown("""## Centrality Graph""")
+
+	with open('Datasets/iqiyi_nodelist.csv', 'r') as nodecsv:  # Open the file
+		nodereader = csv.reader(nodecsv)  # Read the csv
+		# Python list comprehension and list slicing to remove the header row)
+		nodes = [n for n in nodereader][1:]
+
+	node_names = [n[0] for n in nodes]  # Get a list of only the node names
+
+	with open('Datasets/iqiyi_edgelist.csv', 'r') as edgecsv:  # Open the file
+		edgereader = csv.reader(edgecsv)  # Read the csv
+		edges = [tuple(e) for e in edgereader][1:]  # Retrieve the data
+
+	# create graph object
+	G = nx.Graph()
+
+	G.add_nodes_from(node_names)
+	G.add_edges_from(edges)
+
+	person_dict = dict(G.degree(G.nodes()))
+	nx.set_node_attributes(G, name='person_dict', values=person_dict)
+	# person_dict
+
+	part = community.best_partition(G)
+	remove = [node for node, degree in dict(G.degree()).items() if degree < 1]
+	G.remove_nodes_from(remove)
+	plt.figure(figsize=(50, 50))
+	nx.draw_networkx(G, pos=nx.spring_layout(G))  # try other layouts - search networkx help for options
 	st.pyplot(plt)
