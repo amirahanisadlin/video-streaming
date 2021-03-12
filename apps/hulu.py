@@ -272,34 +272,34 @@ def app():
 
 	# ---------------end of hashtaglist --------------------
 
-	# st.markdown("""## Centrality Graph""")
-	#
-	# with open('Datasets/hulu_nodelist.csv', 'r') as nodecsv:  # Open the file
-	# 	nodereader = csv.reader(nodecsv)  # Read the csv
-	# 	# Python list comprehension and list slicing to remove the header row)
-	# 	nodes = [n for n in nodereader][1:]
-	# # print(nodes)
-	#
-	# node_names = [n[0] for n in nodes]  # Get a list of only the node names
-	#
-	# with open('Datasets/hulu_edgelist.csv', 'r') as edgecsv:  # Open the file
-	# 	edgereader = csv.reader(edgecsv)  # Read the csv
-	# 	edges = [tuple(e) for e in edgereader][1:]  # Retrieve the data
-	# # print(edges)
-	#
-	# # create graph object
-	# G = nx.Graph()
-	#
-	# G.add_nodes_from(node_names)
-	# G.add_edges_from(edges)
-	#
-	# person_dict = dict(G.degree(G.nodes()))
-	# nx.set_node_attributes(G, name='person_dict', values=person_dict)
+	st.markdown("""## Centrality Graph""")
+	
+	with open('Datasets/hulu_nodelist.csv', 'r') as nodecsv:  # Open the file
+		nodereader = csv.reader(nodecsv)  # Read the csv
+		# Python list comprehension and list slicing to remove the header row)
+		nodes = [n for n in nodereader][1:]
+	# print(nodes)
+	
+	node_names = [n[0] for n in nodes]  # Get a list of only the node names
+	
+	with open('Datasets/hulu_edgelist.csv', 'r') as edgecsv:  # Open the file
+		edgereader = csv.reader(edgecsv)  # Read the csv
+		edges = [tuple(e) for e in edgereader][1:]  # Retrieve the data
+	# print(edges)
+	
+	# create graph object
+	G = nx.Graph()
+	
+	G.add_nodes_from(node_names)
+	G.add_edges_from(edges)
+	
+	person_dict = dict(G.degree(G.nodes()))
+	nx.set_node_attributes(G, name='person_dict', values=person_dict)
 	# # person_dict
-	#
-	# part = community.best_partition(G)
-	# remove = [node for node, degree in dict(G.degree()).items() if degree < 1]
-	# G.remove_nodes_from(remove)
-	# plt.figure(figsize=(50, 50))
-	# nx.draw_networkx(G, pos=nx.spring_layout(G))  # try other layouts - search networkx help for options
-	# st.pyplot(plt)
+	
+	part = community.best_partition(G)
+	remove = [node for node, degree in dict(G.degree()).items() if degree < 1]
+	G.remove_nodes_from(remove)
+	plt.figure(figsize=(50, 50))
+	nx.draw_networkx(G, pos=nx.spring_layout(G))  # try other layouts - search networkx help for options
+	st.pyplot(plt)
