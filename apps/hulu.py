@@ -36,6 +36,21 @@ def app():
 		df = pd.read_csv('Datasets/hulu_tweets.csv')
 		return df
 
+	@st.cache(allow_output_mutation=True)
+	def get_nodes():
+		with open('Datasets/hulu_nodelist.csv', 'r') as nodecsv:  # Open the file
+			nodereader = csv.reader(nodecsv)  # Read the csv
+			# Python list comprehension and list slicing to remove the header row)
+			nodes = [n for n in nodereader][1:]
+		return nodes
+
+	@st.cache(allow_output_mutation=True)
+	def get_edges():
+		with open('Datasets/hulu_edgelist.csv', 'r') as edgecsv:  # Open the file
+			edgereader = csv.reader(edgecsv)  # Read the csv
+			edges = [tuple(e) for e in edgereader][1:]  # Retrieve the data
+		return edges
+
 	st.title('Video Streaming Social Media Analytics')
 	st.subheader("A social media computing project by Wan Zulmuhammad Harith, Amirah Anis Adlin, Nurlaili Hamimi and Amirul Ikhmal")
 
@@ -274,18 +289,21 @@ def app():
 
 	st.markdown("""## Centrality Graph""")
 	
-	with open('Datasets/hulu_nodelist.csv', 'r') as nodecsv:  # Open the file
-		nodereader = csv.reader(nodecsv)  # Read the csv
-		# Python list comprehension and list slicing to remove the header row)
-		nodes = [n for n in nodereader][1:]
-	# print(nodes)
+	# with open('Datasets/hulu_nodelist.csv', 'r') as nodecsv:  # Open the file
+	# 	nodereader = csv.reader(nodecsv)  # Read the csv
+	# 	# Python list comprehension and list slicing to remove the header row)
+	# 	nodes = [n for n in nodereader][1:]
+	# # print(nodes)
 	
-	node_names = [n[0] for n in nodes]  # Get a list of only the node names
+	# node_names = [n[0] for n in nodes]  # Get a list of only the node names
 	
-	with open('Datasets/hulu_edgelist.csv', 'r') as edgecsv:  # Open the file
-		edgereader = csv.reader(edgecsv)  # Read the csv
-		edges = [tuple(e) for e in edgereader][1:]  # Retrieve the data
+	# with open('Datasets/hulu_edgelist.csv', 'r') as edgecsv:  # Open the file
+	# 	edgereader = csv.reader(edgecsv)  # Read the csv
+	# 	edges = [tuple(e) for e in edgereader][1:]  # Retrieve the data
 	# print(edges)
+	nodes = get_nodes()
+	node_names = [n[0] for n in nodes]  # Get a list of only the node names
+	edges = get_edges()
 	
 	# create graph object
 	G = nx.Graph()
