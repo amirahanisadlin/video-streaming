@@ -51,6 +51,16 @@ def app():
 			edges = [tuple(e) for e in edgereader][1:]  # Retrieve the data
 		return edges
 
+	@st.cache(allow_output_mutation=True)
+	def get_node_names(nodes):
+		node_names = [n[0] for n in nodes]  # Get a list of only the node names
+		return node_names
+
+	@st.cache(allow_output_mutation=True)
+	def get_node_names(nodes):
+		node_names = [n[0] for n in nodes]  # Get a list of only the node names
+		return node_names
+
 	st.title('Video Streaming Social Media Analytics')
 	st.subheader("A social media computing project by Wan Zulmuhammad Harith, Amirah Anis Adlin, Nurlaili Hamimi and Amirul Ikhmal")
 
@@ -286,12 +296,10 @@ def app():
 
 	# ---------------end of hashtaglist --------------------
 
-	st.markdown("""## Centrality Graph""")
-	
-	
+	st.markdown("""## Centrality Graph""")	
 	# print(nodes)
 	nodes = get_nodes()
-	node_names = [n[0] for n in nodes]  # Get a list of only the node names
+	node_names = get_node_names(nodes)
 	edges = get_edges()
 	
 	# # create graph object
