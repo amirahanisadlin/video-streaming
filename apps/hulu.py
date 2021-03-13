@@ -289,6 +289,33 @@ def app():
 
 	st.markdown("""## Centrality Graph""")
 	
+	image = Image.open('Datasets/disneyplus_graph.png')
+        img_array = np.array(image)
+	st.image(img_array)
+	
+	st.markdown("""## Centrality Measures""")
+	
+	st.markdown(""""### Top 5 Betweenness of Hulu"""")
+	st.text("Name: hulu | Betweenness Centrality: 0.3074278726953202 | Degree: 100")
+	st.text("Name: POTUS | Betweenness Centrality: 0.07857777832422269 | Degree: 20")
+	st.text("Name: YouTube | Betweenness Centrality: 0.058035184714865934 | Degree: 22")
+	st.text("Name: RyanWhiteOK | Betweenness Centrality: 0.05230051097862255 | Degree: 22")
+	st.text("Name: angel_leighann_ | Betweenness Centrality: 0.03252699193658603 | Degree: 8")
+		
+	st.markdown(""""### Top 5 Eigenvector of Hulu"""")
+	st.text("Name: hulu | Eigenvector Centrality: 0.6389273321247988 | Degree: 100")
+	st.text("Name: film_girl | Eigenvector Centrality: 0.15166987530883663 | Degree: 18")
+	st.text("Name: YouTube | Eigenvector Centrality: 0.14287460556075054 | Degree: 22")
+	st.text("Name: RyanWhiteOK | Eigenvector Centrality: 0.1416112252817413 | Degree: 22")
+	st.text("Name: POTUS | Eigenvector Centrality: 0.14107744339204836 | Degree: 20")
+
+	st.markdown(""""### Top 5 Centrality of Hulu"""")
+	st.text("Name: hulu | Degree Centrality: 100 | Degree: 100")
+	st.text("Name: RyanWhiteOK | Degree Centrality: 22 | Degree: 22")
+	st.text("Name: YouTube | Degree Centrality: 22 | Degree: 22")
+	st.text("Name: POTUS | Degree Centrality: 20 | Degree: 20")
+	st.text("Name: film_girl | Degree Centrality: 18 | Degree: 18")
+		    
 	# with open('Datasets/hulu_nodelist.csv', 'r') as nodecsv:  # Open the file
 	# 	nodereader = csv.reader(nodecsv)  # Read the csv
 	# 	# Python list comprehension and list slicing to remove the header row)
