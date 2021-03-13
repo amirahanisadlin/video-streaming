@@ -292,24 +292,52 @@ def app():
 	# ---------------end of hashtaglist --------------------
 
 	st.markdown("""## Centrality Graph""")
+	
+	image = Image.open('Datasets/iqiyi_graph.png')
+        img_array = np.array(image)
+	st.image(img_array)
+	
+	st.markdown("""## Centrality Measures""")
+	
+	st.markdown(""""### Top 5 Betweenness of IQiyiOfficial"""")
+	st.text("Name: qingchunyouni_ | Betweenness Centrality: 0.0401952691517753 | Degree: 141")
+	st.text("Name: iQIYIOfficial | Betweenness Centrality: 0.015311562134186713 | Degree: 19")
+	st.text("Name: KrisWu | Betweenness Centrality: 0.00769498414674739 | Degree: 26")
+	st.text("Name: CCTV | Betweenness Centrality: 0.004829545031209472 | Degree: 17")
+	st.text("Name: wangyibo_bar | Betweenness Centrality: 0.004811314375662493 | Degree: 15")
+		   
+	st.markdown(""""### Top 5 Eigenvector of IQiyiOfficial"""")
+	st.text("Name: qingchunyouni_ | Eigenvector Centrality: 0.7048097577830985 | Degree: 141")
+	st.text("Name: iQIYIOfficial | Eigenvector Centrality: 0.07686757487120785 | Degree: 19")
+	st.text("Name: gungPMZ622916 | Eigenvector Centrality: 0.06468401729391232 | Degree: 4")
+	st.text("Name: fcllinyu | Eigenvector Centrality: 0.06153156374119952 | Degree: 2")
+	st.text("Name: ApelacioJezel | Eigenvector Centrality: 0.06153156374119952 | Degree: 2")
 
-	nodes = get_nodes()
-	node_names = [n[0] for n in nodes]  # Get a list of only the node names
-	edges = get_edges()
+	st.markdown(""""### Top 5 Centrality of IQiyiOfficial"""")
+	st.text("Name: qingchunyouni_ | Degree Centrality: 141 | Degree: 141")
+	st.text("Name: KrisWu | Degree Centrality: 26 | Degree: 26")
+	st.text("Name: iQIYIOfficial | Degree Centrality: 19 | Degree: 19")
+	st.text("Name: CCTV | Degree Centrality: 17 | Degree: 17")
+	st.text("Name: wangyibo_bar | Degree Centrality: 15 | Degree: 15")
 
-	# create graph object
-	G = nx.Graph()
 
-	G.add_nodes_from(node_names)
-	G.add_edges_from(edges)
+	# 	nodes = get_nodes()
+	# 	node_names = [n[0] for n in nodes]  # Get a list of only the node names
+	# 	edges = get_edges()
 
-	person_dict = dict(G.degree(G.nodes()))
-	nx.set_node_attributes(G, name='person_dict', values=person_dict)
-	# person_dict
+	# 	# create graph object
+	# 	G = nx.Graph()
 
-	part = community.best_partition(G)
-	remove = [node for node, degree in dict(G.degree()).items() if degree < 1]
-	G.remove_nodes_from(remove)
-	plt.figure(figsize=(50, 50))
-	nx.draw_networkx(G, pos=nx.spring_layout(G))  # try other layouts - search networkx help for options
-	st.pyplot(plt)
+	# 	G.add_nodes_from(node_names)
+	# 	G.add_edges_from(edges)
+
+	# 	person_dict = dict(G.degree(G.nodes()))
+	# 	nx.set_node_attributes(G, name='person_dict', values=person_dict)
+	# 	# person_dict
+
+	# 	part = community.best_partition(G)
+	# 	remove = [node for node, degree in dict(G.degree()).items() if degree < 1]
+	# 	G.remove_nodes_from(remove)
+	# 	plt.figure(figsize=(50, 50))
+	# 	nx.draw_networkx(G, pos=nx.spring_layout(G))  # try other layouts - search networkx help for options
+	# 	st.pyplot(plt)
