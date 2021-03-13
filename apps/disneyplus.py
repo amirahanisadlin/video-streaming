@@ -290,6 +290,34 @@ def app():
 
 	st.markdown("""## Centrality Graph""")
 	
+	image = Image.open('Datasets/disneyplus_graph.png')
+        img_array = np.array(image)
+	st.image(img_array)
+	
+	st.markdown("""## Centrality Measures""")
+	
+	st.markdown(""""### Top 5 Betweenness of DisneyPlus"""")
+	st.text("Name: disneyplus | Betweenness Centrality: 0.03278973024928096 | Degree: 180")
+	st.text("Name: MarvelStudios | Betweenness Centrality: 0.0022595071218984254 | Degree: 36")
+	st.text("Name: Marvel | Betweenness Centrality: 0.002086193495320754 | Degree: 35")
+	st.text("Name: Disney | Betweenness Centrality: 0.001820831345012364 | Degree: 26")
+	st.text("Name: milygirl10 | Betweenness Centrality: 0.001019574881730995 | Degree: 39")
+		   
+	st.markdown(""""### Top 5 Eigenvector of DisneyPlus"""")
+	st.text("Name: disneyplus | Eigenvector Centrality: 0.4818729458776124 | Degree: 180")
+	st.text("Name: milygirl10 | Eigenvector Centrality: 0.19314162103905416 | Degree: 39")
+	st.text("Name: LoLo68985017 | Eigenvector Centrality: 0.17880977078333604 | Degree: 32")
+	st.text("Name: MarvelStudios | Eigenvector Centrality: 0.1733427072741722 | Degree: 36")
+	st.text("Name: Marvel | Eigenvector Centrality: 0.16422465543850892 | Degree: 35")
+
+	st.markdown(""""### Top 5 Centrality of DisneyPlus"""")
+	st.text("Name: disneyplus | Degree Centrality: 180 | Degree: 180")
+	st.text("Name: milygirl10 | Degree Centrality: 39 | Degree: 39")
+	st.text("Name: MarvelStudios | Degree Centrality: 36 | Degree: 36")
+	st.text("Name: Marvel | Degree Centrality: 35 | Degree: 35")
+	st.text("Name: LoLo68985017 | Degree Centrality: 32 | Degree: 32")
+		    
+	
 	# with open('Datasets/disneyplus_nodelist.csv', 'r') as nodecsv:  # Open the file
 	# 	nodereader = csv.reader(nodecsv)  # Read the csv
 	# 	# Python list comprehension and list slicing to remove the header row)
@@ -303,23 +331,27 @@ def app():
 	# 	edgereader = csv.reader(edgecsv)  # Read the csv
 	# 	edges = [tuple(e) for e in edgereader][1:]  # Retrieve the data
 
-	nodes = get_nodes()
-	node_names = [n[0] for n in nodes]  # Get a list of only the node names
-	edges = get_edges()
+	# 	nodes = get_nodes()
+	# 	node_names = [n[0] for n in nodes]  # Get a list of only the node names
+	# 	edges = get_edges()
+
+	# 	# create graph object
+	# 	G = nx.Graph()
+
+	# 	G.add_nodes_from(node_names)
+	# 	G.add_edges_from(edges)
+
+	# 	person_dict = dict(G.degree(G.nodes()))
+	# 	nx.set_node_attributes(G, name='person_dict', values=person_dict)
+	# 	# # person_dict
+
+	# 	part = community.best_partition(G)
+	# 	remove = [node for node, degree in dict(G.degree()).items() if degree < 1]
+	# 	G.remove_nodes_from(remove)
+	# 	plt.figure(figsize=(50, 50))
+	# 	nx.draw_networkx(G, pos=nx.spring_layout(G))  # try other layouts - search networkx help for options
+	# 	st.pyplot(plt)
 	
-	# create graph object
-	G = nx.Graph()
 	
-	G.add_nodes_from(node_names)
-	G.add_edges_from(edges)
+
 	
-	person_dict = dict(G.degree(G.nodes()))
-	nx.set_node_attributes(G, name='person_dict', values=person_dict)
-	# # person_dict
-	
-	part = community.best_partition(G)
-	remove = [node for node, degree in dict(G.degree()).items() if degree < 1]
-	G.remove_nodes_from(remove)
-	plt.figure(figsize=(50, 50))
-	nx.draw_networkx(G, pos=nx.spring_layout(G))  # try other layouts - search networkx help for options
-	st.pyplot(plt)
