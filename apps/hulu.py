@@ -290,7 +290,7 @@ def app():
 
 	st.markdown("""## Centrality Graph""")
 	
-	image = Image.open('Datasets/hulu_graph.png')
+	image = Image.open('hulu_graph.png')
 	img_array = np.array(image)
 	st.image(img_array)
 	

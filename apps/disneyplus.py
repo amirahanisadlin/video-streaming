@@ -291,7 +291,7 @@ def app():
 
 	st.markdown("""## Centrality Graph""")
 	
-	image = Image.open('Datasets/disneyplus_graph.png')
+	image = Image.open('disneyplus_graph.png')
 	img_array = np.array(image)
 	st.image(img_array)
 	
