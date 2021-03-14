@@ -298,23 +298,56 @@ def app():
 
 	st.markdown("""## Centrality Graph""")	
 	# print(nodes)
-	nodes = get_nodes()
-	node_names = get_node_names(nodes)
-	edges = get_edges()
+	# nodes = get_nodes()
+	# node_names = get_node_names(nodes)
+	# edges = get_edges()
+	st.markdown("""## Centrality Graph""")
 	
-	# # create graph object
-	G = nx.Graph()
+	image = Image.open('Datasets/netflix_graph.png')
+        img_array = np.array(image)
+	st.image(img_array)
 	
-	G.add_nodes_from(node_names)
-	G.add_edges_from(edges)
+	st.markdown("""## Centrality Measures""")
 	
-	person_dict = dict(G.degree(G.nodes()))
-	nx.set_node_attributes(G, name='person_dict', values=person_dict)
-	# # person_dict
+	st.markdown(""""### Top 5 Betweenness of Netflix"""")
+	st.text("Name: netflixMY | Betweenness Centrality: 0.009961161956679709 | Degree: 68")
+	st.text("Name: GSCinemas | Betweenness Centrality: 0.004527259957442967 | Degree: 26")
+	st.text("Name: ATCCoLtd1 | Betweenness Centrality: 0.004347439288766493 | Degree: 45")
+	st.text("Name: iamsrk | Betweenness Centrality: 0.003620699111701908 | Degree: 23")
+	st.text("Name: NetflixFilm | Betweenness Centrality: 0.0025718096681348153 | Degree: 22")
+		
+	st.markdown(""""### Top 5 Eigenvector of Netflix"""")
+	st.text("Name: netflixMY | Eigenvector Centrality: 0.4805953486164514 | Degree: 68")
+	st.text("Name: ATCCoLtd1 | Eigenvector Centrality: 0.35569084258417916 | Degree: 45")
+	st.text("Name: loficalls | Eigenvector Centrality: 0.21651757223277618 | Degree: 25")
+	st.text("Name: DicksonThompon | Eigenvector Centrality: 0.16249991504005534 | Degree: 18")
+	st.text("Name: NetflixFilm | Eigenvector Centrality: 0.14980967449118138 | Degree: 22")
+
+	st.markdown(""""### Top 5 Centrality of Netflix"""")
+	st.text("Name: netflixMY | Degree Centrality: 68 | Degree: 68")
+	st.text("Name: ATCCoLtd1 | Degree Centrality: 45 | Degree: 45")
+	st.text("Name: GSCinemas | Degree Centrality: 26 | Degree: 26")
+	st.text("Name: loficalls | Degree Centrality: 25 | Degree: 25")
+	st.text("Name: iamsrk | Degree Centrality: 23 | Degree: 23")
+		    
+	# print(nodes)
+# 	nodes = get_nodes()
+# 	node_names = [n[0] for n in nodes]  # Get a list of only the node names
+# 	edges = get_edges()
 	
-	part = community.best_partition(G)
-	remove = [node for node, degree in dict(G.degree()).items() if degree < 1]
-	G.remove_nodes_from(remove)
-	plt.figure(figsize=(50, 50))
-	nx.draw_networkx(G, pos=nx.spring_layout(G))  # try other layouts - search networkx help for options
-	st.pyplot(plt)
+# 	# # create graph object
+# 	G = nx.Graph()
+	
+# 	G.add_nodes_from(node_names)
+# 	G.add_edges_from(edges)
+	
+# 	person_dict = dict(G.degree(G.nodes()))
+# 	nx.set_node_attributes(G, name='person_dict', values=person_dict)
+# 	# # person_dict
+	
+# 	part = community.best_partition(G)
+# 	remove = [node for node, degree in dict(G.degree()).items() if degree < 1]
+# 	G.remove_nodes_from(remove)
+# 	plt.figure(figsize=(50, 50))
+# 	nx.draw_networkx(G, pos=nx.spring_layout(G))  # try other layouts - search networkx help for options
+# 	st.pyplot(plt)
