@@ -9,6 +9,7 @@ import networkx as nx
 from operator import itemgetter
 import community
 from datetime import datetime, timedelta
+from PIL import Image
 
 def app():
 	@st.cache(allow_output_mutation=True)
@@ -296,7 +297,7 @@ def app():
 
 	# ---------------end of hashtaglist --------------------
 
-	st.markdown("""## Centrality Graph""")	
+	# st.markdown("""## Centrality Graph""")	
 	# print(nodes)
 	# nodes = get_nodes()
 	# node_names = get_node_names(nodes)
@@ -304,26 +305,26 @@ def app():
 	st.markdown("""## Centrality Graph""")
 	
 	image = Image.open('Datasets/netflix_graph.png')
-        img_array = np.array(image)
+	img_array = np.array(image)
 	st.image(img_array)
 	
 	st.markdown("""## Centrality Measures""")
 	
-	st.markdown(""""### Top 5 Betweenness of Netflix"""")
+	st.markdown("""### Top 5 Betweenness of Netflix""")
 	st.text("Name: netflixMY | Betweenness Centrality: 0.009961161956679709 | Degree: 68")
 	st.text("Name: GSCinemas | Betweenness Centrality: 0.004527259957442967 | Degree: 26")
 	st.text("Name: ATCCoLtd1 | Betweenness Centrality: 0.004347439288766493 | Degree: 45")
 	st.text("Name: iamsrk | Betweenness Centrality: 0.003620699111701908 | Degree: 23")
 	st.text("Name: NetflixFilm | Betweenness Centrality: 0.0025718096681348153 | Degree: 22")
 		
-	st.markdown(""""### Top 5 Eigenvector of Netflix"""")
+	st.markdown("""### Top 5 Eigenvector of Netflix""")
 	st.text("Name: netflixMY | Eigenvector Centrality: 0.4805953486164514 | Degree: 68")
 	st.text("Name: ATCCoLtd1 | Eigenvector Centrality: 0.35569084258417916 | Degree: 45")
 	st.text("Name: loficalls | Eigenvector Centrality: 0.21651757223277618 | Degree: 25")
 	st.text("Name: DicksonThompon | Eigenvector Centrality: 0.16249991504005534 | Degree: 18")
 	st.text("Name: NetflixFilm | Eigenvector Centrality: 0.14980967449118138 | Degree: 22")
 
-	st.markdown(""""### Top 5 Centrality of Netflix"""")
+	st.markdown("""### Top 5 Centrality of Netflix""")
 	st.text("Name: netflixMY | Degree Centrality: 68 | Degree: 68")
 	st.text("Name: ATCCoLtd1 | Degree Centrality: 45 | Degree: 45")
 	st.text("Name: GSCinemas | Degree Centrality: 26 | Degree: 26")

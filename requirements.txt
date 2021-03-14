@@ -4,3 +4,4 @@ numpy
 matplotlib
 python-louvain
 networkx
+pillow

@@ -9,6 +9,7 @@ import networkx as nx
 from operator import itemgetter
 import community
 from datetime import datetime, timedelta
+from PIL import Image
 
 def app():
 	@st.cache(allow_output_mutation=True)
@@ -294,26 +295,26 @@ def app():
 	st.markdown("""## Centrality Graph""")
 	
 	image = Image.open('Datasets/iqiyi_graph.png')
-        img_array = np.array(image)
+	img_array = np.array(image)
 	st.image(img_array)
 	
 	st.markdown("""## Centrality Measures""")
 	
-	st.markdown(""""### Top 5 Betweenness of IQiyiOfficial"""")
+	st.markdown("""### Top 5 Betweenness of IQiyiOfficial""")
 	st.text("Name: qingchunyouni_ | Betweenness Centrality: 0.0401952691517753 | Degree: 141")
 	st.text("Name: iQIYIOfficial | Betweenness Centrality: 0.015311562134186713 | Degree: 19")
 	st.text("Name: KrisWu | Betweenness Centrality: 0.00769498414674739 | Degree: 26")
 	st.text("Name: CCTV | Betweenness Centrality: 0.004829545031209472 | Degree: 17")
 	st.text("Name: wangyibo_bar | Betweenness Centrality: 0.004811314375662493 | Degree: 15")
 		   
-	st.markdown(""""### Top 5 Eigenvector of IQiyiOfficial"""")
+	st.markdown("""### Top 5 Eigenvector of IQiyiOfficial""")
 	st.text("Name: qingchunyouni_ | Eigenvector Centrality: 0.7048097577830985 | Degree: 141")
 	st.text("Name: iQIYIOfficial | Eigenvector Centrality: 0.07686757487120785 | Degree: 19")
 	st.text("Name: gungPMZ622916 | Eigenvector Centrality: 0.06468401729391232 | Degree: 4")
 	st.text("Name: fcllinyu | Eigenvector Centrality: 0.06153156374119952 | Degree: 2")
 	st.text("Name: ApelacioJezel | Eigenvector Centrality: 0.06153156374119952 | Degree: 2")
 
-	st.markdown(""""### Top 5 Centrality of IQiyiOfficial"""")
+	st.markdown("""### Top 5 Centrality of IQiyiOfficial""")
 	st.text("Name: qingchunyouni_ | Degree Centrality: 141 | Degree: 141")
 	st.text("Name: KrisWu | Degree Centrality: 26 | Degree: 26")
 	st.text("Name: iQIYIOfficial | Degree Centrality: 19 | Degree: 19")

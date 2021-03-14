@@ -9,6 +9,7 @@ import networkx as nx
 from operator import itemgetter
 import community
 from datetime import datetime, timedelta
+from PIL import Image
 
 def app():
 	@st.cache(allow_output_mutation=True)
@@ -291,26 +292,26 @@ def app():
 	st.markdown("""## Centrality Graph""")
 	
 	image = Image.open('Datasets/disneyplus_graph.png')
-        img_array = np.array(image)
+	img_array = np.array(image)
 	st.image(img_array)
 	
 	st.markdown("""## Centrality Measures""")
 	
-	st.markdown(""""### Top 5 Betweenness of DisneyPlus"""")
+	st.markdown("""### Top 5 Betweenness of DisneyPlus""")
 	st.text("Name: disneyplus | Betweenness Centrality: 0.03278973024928096 | Degree: 180")
 	st.text("Name: MarvelStudios | Betweenness Centrality: 0.0022595071218984254 | Degree: 36")
 	st.text("Name: Marvel | Betweenness Centrality: 0.002086193495320754 | Degree: 35")
 	st.text("Name: Disney | Betweenness Centrality: 0.001820831345012364 | Degree: 26")
 	st.text("Name: milygirl10 | Betweenness Centrality: 0.001019574881730995 | Degree: 39")
 		   
-	st.markdown(""""### Top 5 Eigenvector of DisneyPlus"""")
+	st.markdown("""### Top 5 Eigenvector of DisneyPlus""")
 	st.text("Name: disneyplus | Eigenvector Centrality: 0.4818729458776124 | Degree: 180")
 	st.text("Name: milygirl10 | Eigenvector Centrality: 0.19314162103905416 | Degree: 39")
 	st.text("Name: LoLo68985017 | Eigenvector Centrality: 0.17880977078333604 | Degree: 32")
 	st.text("Name: MarvelStudios | Eigenvector Centrality: 0.1733427072741722 | Degree: 36")
 	st.text("Name: Marvel | Eigenvector Centrality: 0.16422465543850892 | Degree: 35")
 
-	st.markdown(""""### Top 5 Centrality of DisneyPlus"""")
+	st.markdown("""### Top 5 Centrality of DisneyPlus""")
 	st.text("Name: disneyplus | Degree Centrality: 180 | Degree: 180")
 	st.text("Name: milygirl10 | Degree Centrality: 39 | Degree: 39")
 	st.text("Name: MarvelStudios | Degree Centrality: 36 | Degree: 36")
