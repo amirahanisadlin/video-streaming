@@ -304,7 +304,7 @@ def app():
 	# edges = get_edges()
 	st.markdown("""## Centrality Graph""")
 	
-	image = Image.open('Datasets/netflix_graph.png')
+	image = Image.open('Datasets/netflix_graph.PNG')
 	img_array = np.array(image)
 	st.image(img_array)
 	
